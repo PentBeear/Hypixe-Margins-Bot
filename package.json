@@ -1,0 +1,11 @@
+{
+  "name": "mqtt-activator",
+  "version": "1.0.0",
+  "description": "My First Discord Bot",
+  "main": "bot.js",
+  "author": "PentBeear",
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "hypixel-api-nodejs": "^0.1.5"
+  }
+}
