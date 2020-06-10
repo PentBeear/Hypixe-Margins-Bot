@@ -1,5 +1,5 @@
 # Hypixel-Margins-Bot
-Gets the top 20 most profitable items on hypixel skyblock in the bazaar, also has a function to check individual items
+Gets the top 20 most profitable items on hypixel skyblock in the bazaar (currently not added), also has a function to check individual items
 Dependicies 
 hypixel-api-nodejs
 discord.js
