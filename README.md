@@ -4,7 +4,7 @@ Dependicies
 hypixel-api-nodejs
 discord.js
 
-Note hypixel-api-nodejs was modified with this code added on the end
+Note hypixel-api-nodejs was modified with this code added on the end of index.js
 
 ```
 exports.getBazaarProduct = function(key, item) {
