@@ -7,9 +7,6 @@ const usedKey = apiKey;
 const itemList = require('./itemNames.json'); // Thank you Bozosword ;)
 
 
-
-
-
 client.once('ready', () => {
 	console.log('Ready!');
 });
@@ -17,23 +14,10 @@ client.once('ready', () => {
 client.login(token);
 
 
-
-
-
 itemEmbed = new Discord.MessageEmbed()
 
 
-
-
-
-
-
-
-
-
 client.on('message', message => {
-
-    
 
     if (!message.content.startsWith(prefix) || message.author.bot && msg.channel.id === '720336962527035442') return;
 
@@ -55,23 +39,13 @@ client.on('message', message => {
         else    
             message.channel.send("Item not Found!");
 
-
-       
-
     }
 
     if (command === 'help') {
     message.channel.send(helpEmbed);
     }
 
-    
 
-
-
-
-
-
- 
 // TODO convert this to run off of a local database of the bazaar items.
 function singleBazaar(item,itemName,avatar) // Put this function in here so it could call the send.message
  {
@@ -111,14 +85,7 @@ function singleBazaar(item,itemName,avatar) // Put this function in here so it c
     });
 
 }
-
-
-
-
 });
-
-
-
 
 
 // Adds the arrays nessacary for the bot to calculate profits accurately.
@@ -157,14 +124,10 @@ function singleBazaar(item,itemName,avatar) // Put this function in here so it c
                      coinArray.push(coinMargin);
                      console.log(coinMargin,profitMargin);  
                  }
-                 
- 
              });
          }
          }
    });
-
-
          itemArray.sort(function(a, b){return b-a}); // Sort the arrays
          coinArray.sort(function(a, b){return b-a});
  }
