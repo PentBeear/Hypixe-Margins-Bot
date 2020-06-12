@@ -1,11 +1,13 @@
 {
-  "name": "mqtt-activator",
-  "version": "1.0.0",
-  "description": "My First Discord Bot",
+  "name": "highsky-money",
+  "version": "1.1.0",
+  "description": "an epic bot that makes big moneys",
   "main": "bot.js",
   "author": "PentBeear",
   "dependencies": {
     "discord.js": "^12.2.0",
-    "hypixel-api-nodejs": "^0.1.5"
+    "hypixel-api-nodejs": "^0.1.5",
+    "node-json-db": "^1.1.0",
+    "pouchdb": "^7.2.1"
   }
 }
