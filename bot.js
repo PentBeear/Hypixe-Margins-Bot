@@ -354,95 +354,96 @@ let lastMessagePercent = [];
 
   let lastMessageCoin = [];
   async function updateMarginCoin()
-{   
-    await sleep(15000);
-   
-    const channel = client.channels.cache.get('721063771476328548');
-
-    for (i = 0; i < topItemsCoin.length; i++) {
-        if (i >= 10)
-        {
-            break;
-        }
-        else
-        {
-            var item = topItemsCoin[i].join();
-            var userReadableItem;
-            item = item.split(',')[0]
-
-            if(typeof itemList[item] !== "undefined") // Takes the item name and converts it to the Bazaar naming system
-                userReadableItem = itemList[item];
-            else    
-                message.channel.send("Item not Found!");
-
-            let itemBuyPrice; // Makes the variables and date
-            let itemSellPrice;
-            let itemProfitMargin;
-            let itemCoinMargin;
-            let itemBuyVolume;
-            let itemSellVolume;
-            let date = new Date();
-
-
-            
-            try{ 
-                db.get(item).then(function (doc) { // Gets info from database
-                itemBuyPrice =  doc.buyPrice;
-                itemSellPrice = doc.sellPrice;
-                itemBuyVolume = doc.buyVolume;
-                itemSellVolume = doc.sellVolume;
-                itemCoinMargin = doc.coinMargin;
-                itemProfitMargin = doc.profitMargin;
-                console.log(doc);
-                });}
-                catch(err){
-                    console.log(err);
-                }
-                await sleep(1000);
-
-                if (itemBuyPrice == undefined)
-                {
-                    console.log("ERROR ITEM UNDEFINED " + item);
-                    await sleep(1000);
-                    console.log("hopefully this was fixed!" + item + "value from undefined: " + itemBuyPrice)
-                }
-                
-        marginsCoin = new Discord.MessageEmbed() // Creates Message
-        .setColor('#0099ff')
-        .setTitle(userReadableItem)
-        .setDescription('Create a buy order, once filled resell as a sell order') 
-        .addFields(
-            { name: 'Price (Buy)', value:itemBuyPrice, inline: true},
-            { name: 'Price (Sell)', value:itemSellPrice, inline: true},
-            { name: 'Profit (Percentage)', value: '%' + itemProfitMargin, inline: true},
-            { name: 'Profit (Coins)', value: itemCoinMargin, inline: true},
-            { name: 'Buy Volume', value: itemBuyVolume, inline: true},
-            { name: 'Sell Volume', value: itemSellVolume, inline: true},
-    
-        ) // Adds date
-        .setFooter('Last updated on ' + date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":"  + date.getSeconds());
-    
-
-        if (lastMessageCoin.length != 10) // If there are no previous messages make them and then edit them after.
-        {
-            lastMessageCoin[i] = await channel.send(marginsCoin);  // Sends the Message
-            console.log(lastMessageCoin[i].id);
-            console.log(lastMessageCoin.length);
-            
-        }
-        else
-        {
-            channel.messages.fetch({around: lastMessageCoin[i].id, limit: 1}) // Gets the message by the stored ids
-                .then(msg => {
-                    const fetchedMsg = msg.first();
-                    fetchedMsg.edit(marginsCoin);
-                });
-            
-        }
-     }
-    }  
-
-  }
+  {
+      await sleep(15000);
+      const channel = client.channels.cache.get('721063771476328548');
+      
+  
+      for (i = 0; i < topItemsCoin.length; i++) {
+          if (i >= 10)
+          {
+              break;
+          }
+          else
+          {
+              var item = topItemsCoin[i].join();
+              var userReadableItem;
+              item = item.split(',')[0]
+  
+              if(typeof itemList[item] !== "undefined") // Takes the item name and converts it to the Bazaar naming system
+                  userReadableItem = itemList[item];
+              else    
+                  message.channel.send("Item not Found!");
+  
+              let itemBuyPrice; // Makes the variables and date
+              let itemSellPrice;
+              let itemProfitMargin;
+              let itemCoinMargin;
+              let itemBuyVolume;
+              let itemSellVolume;
+              let date = new Date();
+  
+  
+              
+              try{ 
+                  db.get(item).then(function (doc) { // Gets info from database
+                  itemBuyPrice =  doc.buyPrice;
+                  itemSellPrice = doc.sellPrice;
+                  itemBuyVolume = doc.buyVolume;
+                  itemSellVolume = doc.sellVolume;
+                  itemCoinMargin = doc.coinMargin;
+                  itemProfitMargin = doc.profitMargin;
+                  console.log(doc);
+                  });}
+                  catch(err){
+                      console.log(err);
+                  }
+                  await sleep(1000);
+  
+                  if (itemBuyPrice == undefined)
+                  {
+                      console.log("ERROR ITEM UNDEFINED " + item);
+                      await sleep(1000);
+                      console.log("hopefully this was fixed!" + item + "value from undefined: " + itemBuyPrice)
+                  }
+                  
+          marginsCoin = new Discord.MessageEmbed() // Creates Message
+          .setColor('#0099ff')
+          .setTitle(userReadableItem)
+          .setDescription('Create a buy order, once filled resell as a sell order') 
+          .addFields(
+              { name: 'Price (Buy)', value:itemBuyPrice, inline: true},
+              { name: 'Price (Sell)', value:itemSellPrice, inline: true},
+              { name: 'Profit (Percentage)', value: '%' + itemProfitMargin, inline: true},
+              { name: 'Profit (Coins)', value: itemCoinMargin, inline: true},
+              { name: 'Buy Volume', value: itemBuyVolume, inline: true},
+              { name: 'Sell Volume', value: itemSellVolume, inline: true},
+      
+          ) // Adds date
+          .setFooter('Last updated on ' + date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":"  + date.getSeconds());
+      
+          if (lastMessageCoin.length != 10) // If there are no previous messages make them and then edit them after.
+          {
+              lastMessageCoin[i] = await channel.send(marginsCoin);  // Sends the Message
+              console.log(lastMessageCoin[i].id);
+              console.log(lastMessageCoin.length);
+              
+          }
+          else
+          {
+              channel.messages.fetch({around: lastMessageCoin[i].id, limit: 1}) // Gets the message by the stored ids
+                  .then(msg => {
+                      const fetchedMsg = msg.first();
+                      fetchedMsg.edit(marginsCoin);
+                  });
+              
+          }
+          
+       }
+      }  
+      
+    }
+  
   
    
 
